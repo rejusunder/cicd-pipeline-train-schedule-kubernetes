@@ -7,8 +7,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Running build automation'
-                sh './gradlew build --no-daemon'
+                echo "Running build automation"
+                sh """./gradlew build --no-daemon"""
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
@@ -20,7 +20,7 @@ pipeline {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
                     app.inside {
-                        sh 'echo Hello, World!'
+                        sh """echo Hello, World!"""
                     }
                 }
             }
